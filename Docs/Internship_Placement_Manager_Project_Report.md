@@ -56,60 +56,77 @@ Personas
 ●	Naruto (Student): Wants to update info, track applications, and see feedback.
 ●	Sailor Moon (Coordinator): Manages placements, adds students/employers/mentors, matches them.
 ●	Luffy (Recruiter): Posts internships, views student profiles.
+
 User Stories & Acceptance Criteria
+
 Managing Student Information
 ●	As a student, I want to create/update my profile so the coordinator can see my info.
 ○	System accepts full name, email, major.
 ○	Email must be unique.
 ○	Changes are confirmed.
+
 Managing Companies and Internships
 ●	As a recruiter, I want to add my company and create internship listings.
 ○	System accepts company name, industry, website.
 ○	Listings include job title, dates, company ID.
+
 Matching Students and Internships
 ●	As a coordinator, I want to match students with employers and mentors.
 ○	System creates placements by linking student_id, employer_id, mentor_id.
 ○	Placement creation is confirmed.
 ○	Can list all placements with details.
+
 Feedback and Evaluation
 ●	As a coordinator, I want to add evaluations for student internships.
 ○	System accepts rating/comments, links to student and placement.
 ○	Students can view their evaluations.
+
 5.0 Database Design and Plan
+
 Entity-Relationship Diagram (ERD)
 ●	Students: Info about students (name, email, major).
 ●	Employers: Info about companies.
 ●	Mentors: Info about mentors.
 ●	Placements: Links students, employers, mentors for each internship.
 ●	Evaluations: Performance reviews for placements.
+
 Tables are linked by foreign keys (e.g., student_id in Placements links to Students).
+
 Normalization Notes
 ●	No repeated data; use IDs and foreign keys.
 ●	Easy updates and clean data.
+
 Migration Plan
 ●	On first run, app creates all tables.
 ●	If tables are empty, app adds sample data.
 6.0 Architecture and Technical Stuff
+
 System Architecture
 ●	API Layer (src/api): Defines endpoints.
 ●	Business Logic Layer (src/schemas.py, src/data_models.py): Data validation and structure.
 ●	Database Layer (src/connections.py): Handles DB communication.
+
 Error Model
 ●	Uses HTTPException for clear error messages and status codes.
+
 Authentication Strategy
 ●	Students log in with email/password.
 ●	App issues JWT token for authenticated requests.
 7.0 Team & Project Management
+
 Repository Setup
 ●	main: Production-ready code.
 ●	dev: Feature integration and testing.
 ●	feature branches: For new features/bug fixes.
+
 CI/CD Pipeline
 ●	Runs tests and code checks on every push.
 ●	Deploys if tests pass.
+
 Project Board
 ●	To Do: Tasks to start.
 ●	In Progress: Tasks being worked on.
 ●	In Review: Finished tasks needing review.
 ●	Done: Completed tasks.
+
 Made with FastAPI, PostgreSQL, SQLAlchemy, Alembic, and Docker
