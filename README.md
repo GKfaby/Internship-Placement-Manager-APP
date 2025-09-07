@@ -19,7 +19,7 @@ Navigate to the main project folder in your terminal.
 
 Run the following command to start the application:
 
-docker-compose up --build
+** docker-compose up --build **
 
 Once the containers are running, you can check that the application is working by opening your web browser and going to http://localhost:8000/docs. You should see the interactive API documentation page.
 
