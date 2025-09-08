@@ -13,7 +13,7 @@ TESTING = config('TESTING', default=False, cast=bool)
 
 # Define the database connection engine based on the environment.
 if TESTING:
-    # For testing, we use a simple, in-memory SQLite database.
+    # For testing, a simple, in-memory SQLite database.
     # This is fast and doesn't require a separate database server.
     sqlite_file_name = "test.db"
     sqlite_url = f"sqlite:///{sqlite_file_name}"
@@ -21,7 +21,7 @@ if TESTING:
     # useful for debugging in development.
     engine = create_engine(sqlite_url, echo=True)
 else:
-    # For the live application, we use the PostgreSQL database.
+    # For the live application, the PostgreSQL database.
     # The `host='db'` is important for Docker, as it connects to the database service.
     engine = create_engine(URL.create(
         drivername="postgresql+psycopg2",
@@ -39,13 +39,13 @@ def create_db_and_tables():
     which is common in containerized environments like Docker.
     """
     if TESTING:
-        # We skip the retry logic for the test database since it's in-memory.
+        # skipping the retry logic for the test database since it's in-memory.
         print("Skipping database connection for testing environment.")
         SQLModel.metadata.create_all(engine)
         print("Tables created for in-memory SQLite.")
         return
 
-    # For the live application, we'll try to connect a few times.
+    # For the live application, connect a few times.
     retries = 10
     while retries > 0:
         try:
